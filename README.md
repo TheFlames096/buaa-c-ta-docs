@@ -11,6 +11,7 @@
 | VS Code C 语言环境配置 · Windows | [Markdown](文档/VSCode配置-Windows/VS_Code_C语言环境配置指南.md) · [PDF](文档/VSCode配置-Windows/VS_Code_C语言环境配置指南.pdf) | MinGW-w64 GCC、GDB、编译运行与断点调试 |
 | VS Code C 语言环境配置 · macOS | [Markdown](文档/VSCode配置-macOS/VS_Code_C语言环境配置指南_macOS.md) · [PDF](文档/VSCode配置-macOS/VS_Code_C语言环境配置指南_macOS.pdf) | Apple Clang、LLDB、编译运行与断点调试 |
 | 码道 IDE C 语言环境配置 · HarmonyOS | [Markdown](文档/码道IDE配置-HarmonyOS/码道IDE_C语言环境配置指南_HarmonyOS.md) · [PDF](文档/码道IDE配置-HarmonyOS/码道IDE_C语言环境配置指南_HarmonyOS.pdf) | 码道 IDE、Harmonybrew、Clang 与终端输入输出 |
+| 比赛易错点整理 · C1 | [Markdown](文档/比赛易错点整理/C1/C1易错点整理.md) · [PDF](文档/比赛易错点整理/C1/C1易错点整理.pdf) | C1 上机赛各题易错点、编译运行与提交注意事项 |
 | C 语言代码风格与编译纠错 | [Markdown](文档/C语言代码风格与编译纠错/C语言代码风格与编译纠错指南.md) · [PDF](文档/C语言代码风格与编译纠错/C语言代码风格与编译纠错指南.pdf) | 缩进命名、编译诊断、常见语法和逻辑错误 |
 | accoding OJ 交互题制作流程 | [Markdown](文档/OJ交互题制作流程/accoding%20OJ交互题制作流程.md) · [PDF](文档/OJ交互题制作流程/accoding%20OJ交互题制作流程.pdf) · [配套工程](文档/OJ交互题制作流程/附件/实时交互实验_寻找最大值) | SPJ 实时交互适配、数据准备、后台配置与实验验证 |
 
@@ -50,6 +51,9 @@ buaa-c-ta-docs/
     ├── 码道IDE配置-HarmonyOS/
     │   ├── 码道IDE_C语言环境配置指南_HarmonyOS.md
     │   └── 码道IDE_C语言环境配置指南_HarmonyOS.pdf
+    ├── 比赛易错点整理/
+    │   ├── C1易错点整理.md
+    │   └── C1易错点整理.pdf
     ├── C语言代码风格与编译纠错/
     │   ├── C语言代码风格与编译纠错指南.md
     │   ├── C语言代码风格与编译纠错指南.pdf
