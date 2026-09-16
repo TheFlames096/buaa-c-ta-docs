@@ -1,0 +1,671 @@
+\documentclass[UTF8,zihao=-4,fontset=windows]{ctexart}
+
+\usepackage[a4paper,margin=2.15cm,headheight=15pt]{geometry}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{etoolbox}
+\usepackage{needspace}
+
+\definecolor{navy}{HTML}{17365D}
+\definecolor{blue}{HTML}{2F5597}
+\definecolor{darkgray}{HTML}{404040}
+\definecolor{codebg}{HTML}{F6F8FA}
+\definecolor{pseudobg}{HTML}{F7F5F0}
+\definecolor{codeframe}{HTML}{D9DEE5}
+\definecolor{green}{HTML}{2E6B3C}
+\definecolor{red}{HTML}{A61B1B}
+
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,pdftitle={C语言基础常见问题讲解},pdfsubject={C1上机赛后基础知识整理}}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.35em}
+\setlist[itemize]{leftmargin=2em,itemsep=0.3em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=2.2em,itemsep=0.35em,topsep=0.35em}
+
+\titleformat{\section}{\Large\bfseries\color{navy}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{darkgray}}{\thesubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{2.3em}{0.8em}
+\titlespacing*{\subsection}{0pt}{1.7em}{0.55em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small C语言基础常见问题讲解}
+\fancyhead[R]{\small C1 上机赛后总结}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\lstdefinestyle{cstyle}{
+  language=C,basicstyle=\small\ttfamily,keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{green},stringstyle=\color{red},backgroundcolor=\color{codebg},
+  frame=single,rulecolor=\color{codeframe},framerule=0.5pt,numbers=left,
+  numberstyle=\scriptsize\color{gray},numbersep=9pt,xleftmargin=1.2em,
+  framexleftmargin=0.8em,showstringspaces=false,tabsize=4,columns=fullflexible,
+  keepspaces=true,breaklines=true,aboveskip=0.8em,belowskip=0.8em
+}
+\lstdefinestyle{pseudostyle}{
+  language={},basicstyle=\small\ttfamily,morekeywords={if,else,for,while},
+  keywordstyle=\color{blue}\bfseries,backgroundcolor=\color{pseudobg},frame=single,
+  rulecolor=\color{codeframe},framerule=0.5pt,xleftmargin=1.2em,
+  framexleftmargin=0.8em,showstringspaces=false,columns=fullflexible,
+  keepspaces=true,breaklines=true,aboveskip=0.6em,belowskip=0.8em
+}
+\lstset{style=cstyle}
+
+\newcommand{\term}[1]{\textbf{\color{navy}#1}}
+\newcommand{\good}{\textbf{\color{green}正确写法}}
+\newcommand{\bad}{\textbf{\color{red}容易出错的写法}}
+\newcommand{\pseudolabel}{\noindent\textbf{伪代码}\quad\textit{只说明步骤，不能直接交给编译器运行}\par\nopagebreak}
+\newcommand{\cfragmentlabel}{\noindent\textbf{C 代码片段}\quad\textit{需要放进完整程序，并准备好其中使用的变量}\par\nopagebreak}
+\newcommand{\clabel}{\noindent\textbf{可直接编译运行的完整 C 程序}\par\nopagebreak}
+
+\begin{document}
+
+\begin{center}
+  {\zihao{1}\bfseries\color{navy} C语言基础常见问题讲解\par}
+  \vspace{0.6em}
+  {\zihao{-3}\color{darkgray} C1 上机赛后基础知识整理\par}
+\end{center}
+\vspace{1.2em}
+
+\section*{怎样使用这份讲义}
+
+\term{C 语言}是一种用来编写计算机程序的语言。\term{程序}是一组按顺序交给计算机执行的指令。我们写下的程序文字叫作\term{源代码}，平时也简称为\term{代码}。
+
+这份讲义从一个完整程序开始，依次解释输入输出、条件判断、分支、循环、比较、求和和程序框架。每遇到一个新名词，文中会先说明它的含义，再使用它。阅读示例时，请试着用自己的话说出每一行在做什么。只记住代码的形状，却说不出它的作用，换一道题时仍然容易出错。
+
+文中有两种示例。\term{C 代码片段}按照 C 语言的书写规则来写；这些书写规则统称为\term{语法}。代码片段有时需要放进完整程序，并先准备好其中使用的变量，才能运行。标注“可直接编译运行”的示例是完整程序。把 C 源代码翻译成计算机可以执行的程序，这个过程叫作\term{编译}，完成翻译的工具叫作\term{编译器}。
+
+\term{伪代码}是用接近代码的形式写出的解题步骤。它可以使用中文变量名，目的是先把思路说清楚；伪代码不能直接提交，也不能直接交给编译器运行。本文只在需要概括解题步骤时使用伪代码，并省略不影响思路的语法细节。
+
+\section{先认识一个完整的 C 程序}
+
+\clabel
+\begin{lstlisting}[style=cstyle]
+#include <stdio.h>
+
+int main(void)
+{
+    printf("Hello, C!\n");
+    return 0;
+}
+\end{lstlisting}
+
+先逐行理解这个程序。
+\begin{enumerate}
+  \item \verb|#include <stdio.h>| 表示使用标准输入输出头文件。\term{头文件}提供某些工具的声明；这里的 \verb|stdio.h| 让程序可以使用 \verb|scanf| 和 \verb|printf|。
+  \item \verb|main| 是\term{主函数}。\term{函数}是一段完成特定工作的代码，主函数是程序开始执行的地方。
+  \item 一对花括号 \verb|{ }| 圈出一个\term{代码块}，也就是属于同一结构的一组语句。
+  \item \verb|printf("Hello, C!\n");| 是一条\term{语句}。语句是让程序完成一个动作的完整指令，末尾通常要写分号。
+  \item \verb|return 0;| 表示主函数正常结束，程序执行完毕。
+\end{enumerate}
+
+花括号表示范围，分号表示一条语句结束。它们的作用不同，不能互相代替。
+
+\section{scanf 和 printf 的具体用法}
+
+\verb|scanf| 和 \verb|printf| 都是函数。\verb|scanf| 从键盘或题目给定的输入中读取数据，\verb|printf| 把数据输出到屏幕或\term{评测系统}。评测系统会自动运行提交的程序，并检查输出是否与正确答案一致。
+
+\subsection{变量 数据类型和格式串}
+
+\term{变量}是程序中用来保存数据的一块空间。变量有名字，也有\term{数据类型}。数据类型说明这块空间准备保存什么样的数据，例如整数、小数或字符。
+
+\begin{lstlisting}[style=cstyle]
+int n;
+scanf("%d", &n);
+printf("%d\n", n);
+\end{lstlisting}
+
+第一行声明了变量 \verb|n|。\term{声明变量}就是告诉程序变量的名字和数据类型。这里的 \verb|int| 表示整数类型，因此 \verb|n| 用来保存一个整数。
+
+函数名后圆括号中交给函数使用的内容叫作\term{参数}。\verb|scanf| 和 \verb|printf| 的第一个参数放在双引号中，叫作\term{格式串}。格式串说明数据要按什么形式输入或输出。格式串中的 \verb|%d| 叫作\term{格式说明符}，它为一个整数预留位置。
+
+若输入是 \verb|18|，第二行把 \verb|18| 保存到 \verb|n| 中。第三行在 \verb|%d| 的位置输出 \verb|n| 保存的整数，最后用 \verb|\n| 换行。
+
+\subsection{常用的数据类型和格式说明符}
+
+\begin{center}
+\begin{tabularx}{0.93\textwidth}{>{\centering\arraybackslash}p{2.2cm} >{\centering\arraybackslash}p{3.1cm} X X}
+\toprule
+数据类型 & 变量声明示例 & \texttt{scanf} 中使用 & \texttt{printf} 中使用 \\
+\midrule
+\texttt{int} & \texttt{int n;} & \texttt{\%d} & \texttt{\%d} \\
+\texttt{long long} & \texttt{long long s;} & \texttt{\%lld} & \texttt{\%lld} \\
+\texttt{double} & \texttt{double x;} & \texttt{\%lf} & \texttt{\%f} \\
+\texttt{char} & \texttt{char c;} & \texttt{\%c} & \texttt{\%c} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\verb|int| 保存整数。\verb|long long| 也保存整数，但通常能保存比 \verb|int| 更大的整数。\verb|double| 保存带小数部分的数。\verb|char| 保存一个字符，例如字母 \verb|A| 或符号 \verb|+|。
+
+格式说明符必须与变量类型对应。类型不对应时，程序可能读错数据或输出错误结果。特别注意：\verb|double| 在 \verb|scanf| 中使用 \verb|%lf|，在 \verb|printf| 中使用 \verb|%f|。
+
+\subsection{scanf 中为什么通常要写取地址符}
+
+程序运行时，变量暂时存放在计算机的\term{内存}中。\verb|scanf| 要把读到的数据放进变量，所以必须知道变量在内存中的位置。变量名前的 \verb|&| 叫作\term{取地址符}，表示“这个变量的位置”。
+
+\good：
+\begin{lstlisting}[style=cstyle]
+int n;
+scanf("%d", &n);
+\end{lstlisting}
+
+\bad：
+\begin{lstlisting}[style=cstyle]
+int n;
+scanf("%d", n);
+\end{lstlisting}
+
+第二段代码没有把变量 \verb|n| 的位置交给 \verb|scanf|。程序可能崩溃，也可能得到无法预测的结果。\verb|printf| 只读取变量中已有的值，不会向变量里存入新数据，因此输出普通变量时通常不写 \verb|&|。
+
+\subsection{一次输入多个数据}
+
+格式串中有几个格式说明符，后面就要按相同顺序写几个变量。
+
+\begin{lstlisting}[style=cstyle]
+int a, b;
+scanf("%d%d", &a, &b);
+printf("%d %d\n", a, b);
+\end{lstlisting}
+
+输入 \verb|3 8| 后，变量 \verb|a| 保存 \verb|3|，变量 \verb|b| 保存 \verb|8|。读取整数时，\verb|scanf| 会自动跳过整数前面的空格和换行，所以 \verb|"%d%d"| 和 \verb|"%d %d"| 都能读取这两个整数。
+
+格式串中的普通字符必须与输入对应。例如：
+\begin{lstlisting}[style=cstyle]
+int y, m, d;
+scanf("%d-%d-%d", &y, &m, &d);
+\end{lstlisting}
+
+这段代码要求输入类似 \verb|2026-9-16|，因为格式串中写了两个减号。若题目只说“输入三个整数”，通常不要自行在格式串中加入逗号、冒号或减号。
+
+\subsection{转义字符和百分号}
+
+在双引号中，反斜杠与后面的字符可以合起来表示一个特殊动作。这样的组合叫作\term{转义字符}。
+
+\begin{center}
+\begin{tabularx}{0.84\textwidth}{>{\centering\arraybackslash}p{2.5cm} X X}
+\toprule
+写法 & 含义 & 屏幕上看到的结果 \\
+\midrule
+\texttt{\textbackslash n} & 换行 & 后面的内容从下一行开始 \\
+\texttt{\textbackslash\textbackslash} & 输出一个反斜杠 & \texttt{\textbackslash} \\
+\texttt{\%\%} & 在 \texttt{printf} 中输出百分号 & \texttt{\%} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{lstlisting}[style=cstyle]
+printf("first line\nsecond line\n");
+printf("C:\\code\\main.c\n");
+printf("100%%\n");
+\end{lstlisting}
+
+第一条语句输出两行文字。第二条语句中每两个反斜杠在屏幕上显示成一个反斜杠。第三条语句用两个百分号输出一个百分号，因为单独的 \verb|%| 会被当作格式说明符的开头。
+
+\subsection{输入输出出错时怎样检查}
+
+\begin{enumerate}
+  \item 变量是否已经声明，数据类型是否正确。
+  \item 格式说明符是否与变量类型对应。
+  \item \verb|scanf| 中需要接收数据的普通变量前是否写了 \verb|&|。
+  \item 格式串中是否误加了逗号、冒号或其他普通字符。
+  \item 格式说明符的数量是否与后面的变量数量相同，顺序是否一致。
+  \item 输出内容是否与题目要求完全相同，有没有多写说明文字或空格。
+\end{enumerate}
+
+\section{逻辑运算符和条件表达式}
+
+\term{表达式}是由数据、变量和运算符组成并能计算出一个结果的代码，例如 \verb|a + b|。\term{运算符}是表示某种运算的符号，例如加号 \verb|+| 和大于号 \verb|>|。
+
+分支和循环需要判断某件事是否成立。用来进行这种判断的表达式叫作\term{条件表达式}。在 C 语言中，数值 \verb|0| 表示条件不成立，也就是“假”；非 \verb|0| 的值表示条件成立，也就是“真”。比较结果成立时通常得到 \verb|1|，不成立时得到 \verb|0|。
+
+\subsection{四个常见逻辑运算符}
+
+\begin{center}
+\begin{tabularx}{0.91\textwidth}{>{\centering\arraybackslash}p{2cm} p{2.8cm} X}
+\toprule
+运算符 & 含义 & 条件示例 \\
+\midrule
+\texttt{==} & 等于 & \texttt{a == b} 判断两个值是否相等 \\
+\texttt{!=} & 不等于 & \texttt{a != b} 判断两个值是否不同 \\
+\texttt{\&\&} & 并且 & \texttt{a > 0 \&\& b > 0} 要求两边都成立 \\
+\texttt{||} & 或者 & \texttt{a == 0 || b == 0} 只要求一边成立 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+要判断 \verb|x| 是否在 \verb|1| 到 \verb|10| 之间，包括两个端点，应该把它拆成“\verb|x| 不小于 \verb|1|”和“\verb|x| 不大于 \verb|10|”两个条件：
+
+\begin{lstlisting}[style=cstyle]
+if (x >= 1 && x <= 10)
+{
+    printf("YES\n");
+}
+\end{lstlisting}
+
+不能写成 \verb|1 <= x <= 10|。C 会先计算 \verb|1 <= x|，结果只能是 \verb|0| 或 \verb|1|，再拿这个结果与 \verb|10| 比较。这与“\verb|x| 在区间内”的含义不同。
+
+\subsection{赋值和判断相等不是一回事}
+
+一个等号 \verb|=| 是\term{赋值运算符}，作用是把右边的结果保存到左边的变量中。两个等号 \verb|==| 是判断相等，只能用在需要判断的表达式中。
+
+下面的完整程序先把 \verb|5| 保存到变量 \verb|x|，再判断 \verb|x| 中的值是否等于 \verb|5|。
+
+\clabel
+\begin{lstlisting}[style=cstyle]
+#include <stdio.h>
+
+int main(void)
+{
+    int x;
+
+    x = 5;
+    if (x == 5)
+    {
+        printf("x 中保存的是 5\n");
+    }
+
+    return 0;
+}
+\end{lstlisting}
+
+语句 \verb|x = 5;| 把 \verb|5| 保存到变量中。\verb|if| 圆括号里的 \verb|x == 5| 才是在提问：“变量中保存的值是否等于 \verb|5|？”
+
+如果在 \verb|if| 的条件中误写一个等号，例如 \verb|if (x = 5)|，程序会先把 \verb|5| 存进 \verb|x|。这个赋值表达式的结果是非 \verb|0|，所以条件会被当成真。\term{编译警告}是编译器发现可疑写法后给出的提示；代码可能仍能运行，但通常需要检查。编译器往往会为这种写法给出警告，不要直接忽略。
+
+\subsection{并且和或者怎样判断}
+
+\verb|&&| 表示“并且”，左右两边都成立，整个条件才成立。\verb+||+ 表示“或者”，左右两边只要有一边成立，整个条件就成立。
+
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+条件 A & 条件 B & \texttt{A \&\& B} & \texttt{A || B} \\
+\midrule
+假 & 假 & 假 & 假 \\
+假 & 真 & 假 & 真 \\
+真 & 假 & 假 & 真 \\
+真 & 真 & 真 & 真 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+条件较长时，先把题目的句子拆开，再用括号写清组合关系。例如，“年份能被 \verb|400| 整除，或者能被 \verb|4| 整除但不能被 \verb|100| 整除”写成：
+
+\begin{lstlisting}[style=cstyle]
+if (y % 400 == 0 ||
+    (y % 4 == 0 && y % 100 != 0))
+{
+    printf("YES\n");
+}
+\end{lstlisting}
+
+这里用变量 \verb|y| 保存年份。\verb|%| 是\term{取余运算符}，计算除法的余数。\verb|y % 4 == 0| 表示年份除以 \verb|4| 的余数是 \verb|0|，也就是能被 \verb|4| 整除。
+
+\section{正确书写分支结构}
+
+\term{分支结构}让程序根据条件选择不同的代码执行。\verb|if| 表示“如果条件成立”，\verb|else| 表示“否则”。\verb|if| 和 \verb|else| 是 C 语言预先规定好用途的词，叫作\term{关键字}，不能拿来当变量名。
+
+\subsection{if 和 else 的基本结构}
+
+下面是一个 C 代码片段。变量 \verb|s| 保存分数；把它放进完整程序时，需要先给 \verb|s| 输入一个值。
+
+\cfragmentlabel
+\begin{lstlisting}[style=cstyle]
+if (s >= 60)
+{
+    printf("通过\n");
+}
+else
+{
+    printf("未通过\n");
+}
+\end{lstlisting}
+
+程序先检查圆括号里的条件。条件成立时，只执行第一个花括号中的代码；条件不成立时，只执行 \verb|else| 后花括号中的代码。两个分支不会同时执行。
+
+\subsection{为什么建议始终写花括号}
+
+不写花括号时，\verb|if| 只控制紧跟在后面的一条语句。缩进不会改变程序结构。
+
+\bad：
+\begin{lstlisting}[style=cstyle]
+if (x > 0)
+    printf("这是正数\n");
+    printf("检查结束\n");
+\end{lstlisting}
+
+看起来两条输出都向右缩进了，但实际上只有第一条属于 \verb|if|，第二条每次都会执行。C 编译器根据花括号和分号理解结构，不会根据空格猜测我们的意思。
+
+\good：
+\begin{lstlisting}[style=cstyle]
+if (x > 0)
+{
+    printf("这是正数\n");
+    printf("检查结束\n");
+}
+\end{lstlisting}
+
+初学阶段，无论代码块中有几条语句，都写花括号。缩进帮助人看清层次，花括号把代码的实际范围告诉编译器。
+
+\subsection{多个互斥情况怎样写}
+
+\term{互斥}表示这些情况不能同时成立。例如，一个分数只能属于一个等级。程序从上到下检查同一组 \verb|if|、\verb|else if|、\verb|else|；找到第一个成立的条件后，执行对应代码块，并跳过后面的分支。
+
+下面的 C 代码片段约定变量 \verb|s| 已经保存分数。
+
+\cfragmentlabel
+\begin{lstlisting}[style=cstyle]
+if (s >= 90)
+{
+    printf("A\n");
+}
+else if (s >= 80)
+{
+    printf("B\n");
+}
+else if (s >= 60)
+{
+    printf("C\n");
+}
+else
+{
+    printf("D\n");
+}
+\end{lstlisting}
+
+如果程序检查到第二个条件，说明第一个条件已经不成立，所以此时分数一定小于 \verb|90|。第二个条件只需写 \verb|s >= 80|，不必重复写“并且分数小于 \verb|90|”。
+
+\subsection{分支结构检查表}
+
+\begin{itemize}
+  \item 条件外有圆括号，分支代码外有花括号。
+  \item 判断相等使用 \verb|==|，不等使用 \verb|!=|。
+  \item \verb|else| 后面不写条件；还要判断条件时写 \verb|else if|。
+  \item 不要在 \verb|if (条件)| 后误写分号。分号会形成一条什么也不做的\term{空语句}，使后面的代码块不再受这个 \verb|if| 正常控制。
+  \item 花括号成对出现，同一层代码保持相同缩进。
+\end{itemize}
+
+\section{循环的写法和理解}
+
+\term{循环结构}让同一段代码重复执行。写循环前先回答两个问题：一共重复多少次，每次重复要做什么。
+
+\subsection{for 循环}
+
+当重复次数在循环开始前能够确定时，通常使用 \verb|for|。
+
+\begin{lstlisting}[style=cstyle]
+for (i = 0; i < n; i++)
+{
+    printf("=");
+}
+\end{lstlisting}
+
+变量 \verb|i| 用来记录循环进行到了第几次，叫作\term{循环变量}。\verb|for| 圆括号中的三部分用分号隔开：
+\begin{enumerate}
+  \item \verb|i = 0| 在循环开始前执行一次，把 \verb|i| 的初值设为 \verb|0|。给变量设置开始值叫作\term{初始化}。
+  \item \verb|i < n| 在每轮开始前判断。花括号中每轮重复执行的代码叫作\term{循环体}。条件成立时执行循环体，条件不成立时结束循环。
+  \item \verb|i++| 在每轮结束后执行一次。\verb|i++| 表示让 \verb|i| 增加 \verb|1|，这一步叫作\term{更新循环变量}。
+\end{enumerate}
+
+当 \verb|n = 4| 时，\verb|i| 依次为 \verb|0, 1, 2, 3|，循环正好执行四次。\verb|i = 4| 时，条件 \verb|i < n| 不成立，循环结束。
+
+\subsection{while 循环}
+
+当我们更关心“满足什么条件时继续”，或者重复次数不能提前确定时，可以使用 \verb|while|。
+
+\cfragmentlabel
+\begin{lstlisting}[style=cstyle]
+int i = 0;
+
+while (i < n)
+{
+    printf("=");
+    i++;
+}
+\end{lstlisting}
+
+这段 C 代码片段与上一节的 \verb|for| 循环作用相同。写 \verb|while| 时必须注意三个位置：循环前设置初值，圆括号中写继续循环的条件，循环体内更新会影响条件的变量。若漏掉最后的更新，条件可能永远成立，程序就不会结束。
+
+\subsection{在循环中输入变量是什么意思}
+
+假设要输入 \verb|n| 个整数，并把它们相加。只需要一个变量保存“本轮刚输入的数”。下一轮输入时，新数会覆盖旧数，但旧数已经加进总和，所以不会影响结果。
+
+\pseudolabel
+\begin{lstlisting}[style=pseudostyle]
+总和 = 0
+for (重复 n 次)
+{
+    输入一个数
+    把这个数加到总和
+}
+输出总和
+\end{lstlisting}
+
+这叫作\term{边读边处理}：读到一个数，就立即完成与它有关的计算。如果后面还要再次使用每一个输入值，才需要把所有值保存下来。保存一组相同类型数据的常用结构叫作\term{数组}，数组会在后续课程中专门学习。
+
+\subsection{循环边界为什么容易差一}
+
+\term{循环边界}是循环变量能够取到的第一个值和最后一个值。下面两种写法都执行 \verb|n| 次，但循环变量的取值不同：
+
+\begin{lstlisting}[style=cstyle]
+for (i = 0; i < n; i++)
+{
+}
+
+for (i = 1; i <= n; i++)
+{
+}
+\end{lstlisting}
+
+第一种写法中，\verb|i| 从 \verb|0| 到 \verb|n - 1|。第二种写法中，\verb|i| 从 \verb|1| 到 \verb|n|。若从 \verb|0| 开始却写成 \verb|i <= n|，就会多执行一次。检查时不要只看符号，要写出第一个值、最后一个值和总个数。
+
+\section{比大小 求和和求最大值}
+
+\subsection{比较两个数}
+
+下面给出一个可直接编译运行的完整程序。变量 \verb|a| 和 \verb|b| 保存输入的两个整数，变量 \verb|m| 保存较大值。
+
+\clabel
+\begin{lstlisting}[style=cstyle]
+#include <stdio.h>
+
+int main(void)
+{
+    int a, b, m;
+
+    scanf("%d%d", &a, &b);
+
+    if (a > b)
+    {
+        m = a;
+    }
+    else
+    {
+        m = b;
+    }
+
+    printf("%d\n", m);
+    return 0;
+}
+\end{lstlisting}
+
+如果两个数相等，条件 \verb|a > b| 不成立，程序进入 \verb|else|，把 \verb|b| 作为较大值。因为两者相等，结果仍然正确。只有题目要求单独处理“相等”时，才需要增加一个分支。
+
+\subsection{求多个数的和}
+
+保存累加结果的变量叫作\term{累加变量}。求和前必须把它初始化为 \verb|0|，因为从 \verb|0| 开始加不会改变正确结果。
+
+下面直接写成 C 代码片段。这里约定：\verb|n| 表示数字个数，\verb|i| 表示已经进行的循环次数，\verb|x| 保存本轮输入，\verb|s| 保存总和。
+
+\cfragmentlabel
+\begin{lstlisting}[style=cstyle]
+int n, i, x;
+long long s = 0;
+
+scanf("%d", &n);
+for (i = 0; i < n; i++)
+{
+    scanf("%d", &x);
+    s = s + x;
+}
+
+printf("%lld\n", s);
+\end{lstlisting}
+
+这里使用 \verb|long long| 保存总和，是因为许多整数相加后，结果可能超过 \verb|int| 通常能够保存的范围。
+
+不要只写 \verb|long long s;| 就开始累加。在函数内部声明但没有设置初值的变量，初始内容是不确定的。用不确定的值继续相加，结果也不确定。
+
+\subsection{求多个数的最大值}
+
+最稳妥的方法是先读入第一个数，把它当作“目前见过的最大值”，再逐个处理其余数字。
+
+\pseudolabel
+\begin{lstlisting}[style=pseudostyle]
+输入第一个数，作为当前最大值
+for (依次处理其余数字)
+{
+    输入一个数
+    if (这个数更大) 更新当前最大值
+}
+输出当前最大值
+\end{lstlisting}
+
+第一个数已经在循环前读入，所以循环只需再读 \verb|数字个数 - 1| 个数，循环变量从 \verb|1| 开始。这个方法要求数字个数至少为 \verb|1|。
+
+不要把最大值随手初始化为 \verb|0|。若输入是 \verb|-8 -3 -10|，所有输入都小于 \verb|0|，程序就会错误地把没有出现在输入中的 \verb|0| 当作最大值。用第一个输入值初始化，正数、零和负数都能正确处理。
+
+求最小值时使用相同方法：先把第一个输入当作当前最小值，后面遇到更小的数时再更新。
+
+\Needspace{8\baselineskip}
+\section{写代码前先构建程序框架}
+
+题目示例：输入一个整数 \verb|n|，输出一个左尖括号、\verb|n| 个等号和一个右尖括号。若输入 \verb|5|，输出：
+\begin{verbatim}
+<=====>
+\end{verbatim}
+
+\subsection{先把题目改写成明确步骤}
+
+输入只有整数 \verb|n|。输出由三部分组成：先输出 \verb|<|，再重复输出 \verb|n| 个 \verb|=|，最后输出 \verb|>|。只有中间部分重复，因此循环只包住输出等号的语句。
+
+\pseudolabel
+\begin{lstlisting}[style=pseudostyle]
+输入 n
+输出“<”
+for (重复 n 次) 输出“=”
+输出“>”并换行
+\end{lstlisting}
+
+\subsection{再翻译成完整的 C 程序}
+
+\begin{lstlisting}[style=cstyle]
+#include <stdio.h>
+
+int main(void)
+{
+    int n, i;
+
+    scanf("%d", &n);
+
+    printf("<");
+    for (i = 0; i < n; i++)
+    {
+        printf("=");
+    }
+    printf(">\n");
+
+    return 0;
+}
+\end{lstlisting}
+
+变量 \verb|n| 保存题目给出的等号数量，变量 \verb|i| 控制循环。左尖括号和右尖括号各输出一次，所以放在循环外；等号要输出 \verb|n| 次，所以放在循环内。
+
+\subsection{用小样例手动执行}
+
+\term{手动执行}是指不用计算机，自己按代码顺序记录变量和输出怎样变化。设 \verb|n = 3|：
+\begin{enumerate}
+  \item 先输出 \verb|<|。
+  \item \verb|i = 0|，条件 \verb|0 < 3| 成立，输出第一个 \verb|=|。
+  \item 更新后 \verb|i = 1|，条件成立，输出第二个 \verb|=|。
+  \item 更新后 \verb|i = 2|，条件成立，输出第三个 \verb|=|。
+  \item 更新后 \verb|i = 3|，条件 \verb|3 < 3| 不成立，循环结束。
+  \item 最后输出 \verb|>| 和换行，完整结果是 \verb|<===>|。
+\end{enumerate}
+
+还应测试 \verb|n = 0|。此时循环一次也不执行，只输出 \verb|<>|。这种刚好位于取值范围开头或结尾的数据叫作\term{边界情况}，它很适合检查循环次数是否正确。
+
+\section{常见错误的定位方法}
+
+\subsection{编译错误}
+
+\term{编译错误}表示代码不符合 C 语言语法，编译器无法完成翻译。
+
+先处理编译器报告的第一处错误，因为后面的错误可能只是被第一处错误连带引起。常见原因包括：
+\begin{itemize}
+  \item 漏写分号。
+  \item 圆括号、花括号或双引号没有成对。
+  \item 变量没有声明，或者同一个变量名前后拼写不一致。
+  \item 使用了中文全角符号，例如中文分号、中文引号或全角感叹号。
+\end{itemize}
+
+\subsection{程序能运行但答案错误}
+
+程序通过编译并不表示思路一定正确。若程序能结束，但输出与题目答案不同，按下面的顺序检查：
+\begin{enumerate}
+  \item 选一组很小的输入，自己先算出正确答案。
+  \item 检查是否读入了题目给出的全部数据，格式说明符是否正确。
+  \item 检查条件中的 \verb|=|、\verb|==|、\verb|!=|、\verb|&&| 和 \verb+||+。
+  \item 写出循环变量从第一个值到最后一个值的完整取值，确认执行次数。
+  \item 检查求和变量是否从 \verb|0| 开始，最大值或最小值是否用输入值初始化。
+  \item 检查输出有没有多余文字、空格或换行。
+\end{enumerate}
+
+\subsection{程序一直不结束}
+
+程序开始运行后长时间没有结束，常见原因是循环条件一直为真。检查循环体内是否改变了会影响条件的变量，以及改变方向是否能让条件最终变成假。
+
+下面的 C 代码片段会一直循环，因为变量 \verb|i| 没有在循环体中改变。
+
+\cfragmentlabel
+\begin{lstlisting}[style=cstyle]
+int i = 0;
+
+while (i < 10)
+{
+    printf("%d\n", i);
+}
+\end{lstlisting}
+
+这里的 \verb|i| 永远是 \verb|0|，所以 \verb|i < 10| 永远成立。要让循环结束，循环体内必须加入 \verb|i++;|。当 \verb|i| 变成 \verb|10| 时，条件为假，循环结束。
+
+\section{上机前快速检查表}
+
+提交代码前，从上到下检查一遍：
+\begin{enumerate}
+  \item 是否包含需要的头文件和完整的 \verb|main| 函数。
+  \item 每个变量是否已经声明，数据类型是否适合保存结果。
+  \item 变量是否在第一次使用前完成初始化或输入。
+  \item \verb|scanf| 的格式说明符、取地址符和变量是否一一对应。
+  \item \verb|printf| 是否只输出题目要求的内容。
+  \item 判断相等是否使用 \verb|==|，不等是否使用 \verb|!=|。
+  \item \verb|if|、\verb|else|、\verb|for| 和 \verb|while| 的代码块是否用花括号圈好。
+  \item 循环的初值、条件和更新是否能得到正确次数，并且最终能够结束。
+  \item 求和是否从 \verb|0| 开始，最大值和最小值是否用输入值初始化。
+  \item 是否测试了边界情况，例如 \verb|n = 0|、\verb|n = 1|、负数和相等的数。
+  \item 编译器是否仍有警告。警告表示代码中可能存在错误，不应直接忽略。
+\end{enumerate}
+
+\section*{最后的练习方法}
+
+练习时不要求一次写对。请形成固定顺序：确定输入和输出，写出步骤，选择分支或循环，初始化变量，再用边界情况检查。读懂示例后，合上讲义重新写代码，并用一组很小的数据手动执行。若结果不对，就定位到具体一行，依次说明它要做什么、执行前变量保存什么值、执行后变量发生什么变化。每一步都能用自己的话解释清楚时，代码便不再是需要死记的符号。
+
+\end{document}
