@@ -1,0 +1,13 @@
+macOS 使用说明
+
+1. 完整解压后，在 VS Code 中选择“文件 → 打开文件夹”，打开 macOS 文件夹。左侧应看到 .vscode 和 C1。不要只打开 A.c，也不要打开包含两个系统文件夹的上一层目录。
+
+2. PDF 中的 c 是工作区文件夹的示例名称；直接打开本包的 macOS 文件夹即可，也可以将整个文件夹复制并重命名为 c。
+
+3. 示例源代码为 C1/A.c。先保存并选中 A.c，再编译、运行或调试。PDF、Markdown 与 .vscode 配置已经同步；本包提供源代码，请在本机编译生成可执行文件。
+
+4. 按本目录 PDF 安装 VS Code、Microsoft C/C++ 扩展和 Apple Command Line Tools。本包不含编译器。使用 clang --version、lldb --version 和 xcode-select -p 检查安装。
+
+5. 配置使用 /usr/bin/clang 和 LLDB。Shift+Command+B 编译；Control+F5 运行但不调试；F5 断点调试。功能键被系统占用时，同时按住 fn。需要输入时，在外部“终端”窗口中操作，并允许 VS Code 控制“终端”。
+
+6. 终端位于工作区根目录时，执行 cd "C1"，再执行 clang A.c -std=c11 -Wall -Wextra -pedantic -o A，成功后执行 ./A。每次修改源代码后都需要重新编译。

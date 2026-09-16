@@ -1,0 +1,13 @@
+# 本机文件与临时产物
+.DS_Store
+Thumbs.db
+~$*
+*.tmp
+*.log
+__pycache__/
+*.pyc
+*.exe
+*.o
+*.out
+*.dSYM/
+# 教程的 .vscode 示例配置需要提交，不要整体忽略该目录。

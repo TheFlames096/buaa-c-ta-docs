@@ -1,0 +1,6 @@
+{
+    "files.defaultLanguage": "c",
+    "editor.formatOnType": true,
+    "editor.snippetSuggestions": "top",
+    "files.encoding": "utf8"
+}

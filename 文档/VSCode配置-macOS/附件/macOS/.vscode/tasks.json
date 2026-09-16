@@ -1,0 +1,60 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C: build release",
+            "command": "/usr/bin/clang",
+            "args": [
+                "-std=c11",
+                "-Wall",
+                "-Wextra",
+                "-pedantic",
+                "-O2",
+                "-fdiagnostics-color=always",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "使用 Apple Clang 以 C11 模式编译当前 C 文件（发布版）"
+        },
+        {
+            "type": "cppbuild",
+            "label": "C: build debug",
+            "command": "/usr/bin/clang",
+            "args": [
+                "-std=c11",
+                "-Wall",
+                "-Wextra",
+                "-pedantic",
+                "-O0",
+                "-g3",
+                "-fdiagnostics-color=always",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "detail": "使用 Apple Clang 以 C11 模式编译当前 C 文件（调试版）"
+        }
+    ]
+}

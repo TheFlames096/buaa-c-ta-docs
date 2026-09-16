@@ -1,0 +1,17 @@
+Windows 使用说明
+
+1. 完整解压后，在 VS Code 中选择“文件 → 打开文件夹”，打开 windows 文件夹。左侧应看到 .vscode 和 C1。不要只打开 A.c，也不要打开包含两个系统文件夹的上一层目录。
+
+2. PDF 中的 c 是工作区文件夹的示例名称；直接打开本包的 windows 文件夹即可，也可以将整个文件夹复制并重命名为 c。
+
+3. 示例源代码为 C1/A.c。先保存并选中 A.c，再编译、运行或调试。项目文件、PDF 和 Markdown 采用老师提供的最新包体；本包提供源代码，请在本机编译生成可执行文件。
+
+4. 按本目录 PDF 安装 VS Code、Microsoft C/C++ 扩展及 MinGW-w64 GCC/GDB。本包不含编译器。
+
+5. 默认路径为 E:\mingw64\bin\gcc.exe 和 E:\mingw64\bin\gdb.exe。实际安装位置不同时，按教程统一修改 c_cpp_properties.json、tasks.json、launch.json 的相关路径。JSON 字符串中的反斜杠写成两个反斜杠。MSYS2 UCRT64 的工具链目录通常为 C:\msys64\ucrt64\bin。
+
+6. 配置 PATH 后重新打开 VS Code 和终端，运行 gcc --version、gdb --version、where.exe gcc、where.exe gdb 检查安装。
+
+7. Ctrl+Shift+B 编译；选择“运行当前 C 文件”并按 Ctrl+F5 运行；选择“调试当前 C 文件”并按 F5 断点调试。在外部控制台中输入数据。
+
+8. 终端位于工作区根目录时，执行 cd ".\C1"，再执行 gcc A.c -std=c11 -Wall -Wextra -pedantic -o A.exe，成功后执行 .\A.exe。每次修改源代码后都需要重新编译。
