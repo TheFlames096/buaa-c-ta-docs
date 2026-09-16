@@ -1,0 +1,82 @@
+{
+  "problem_id": 10296,
+  "admin_url": "https://accoding.buaa.edu.cn:4000/problem/10296/index",
+  "experiments": [
+    {
+      "submission": 8185618,
+      "kind": "ordinary_stdin_probe",
+      "result": "OE",
+      "detail": "NO_LIVE_REPLY: contestant read EOF after first flushed query; SPJ ran after contestant exited.",
+      "time_ms": 1,
+      "memory_kb": 1632
+    },
+    {
+      "submission": 8185621,
+      "kind": "make_fifo_bootstrap_probe",
+      "result": "OE",
+      "detail": "Uploaded makefile is /data/data/makefile; /data/makefile absent. Comparator cwd=/test uid=0. Contestant FIFO open failed errno=13."
+    },
+    {
+      "submission": 8185624,
+      "kind": "own_job_layout",
+      "result": "OE",
+      "detail": "/test/main remains executable; contestant uid=8194 gid=8194; comparator uid=0; /test/judge.py exists."
+    },
+    {
+      "submission": 8185626,
+      "kind": "runner_api_inspection",
+      "result": "OE",
+      "detail": "Confirmed native process_monitor wrapper; inspection only."
+    }
+  ],
+  "status": "live_interaction_verified",
+  "full_data_cases": 36,
+  "final_configuration": {
+    "time_limit_outer_ms": 500,
+    "time_limit_inner_ms": 1000,
+    "memory_limit_kb": 65536,
+    "languages": [
+      "c",
+      "c++"
+    ],
+    "query_limit": 40
+  },
+  "full_results": [
+    {
+      "submission": 8185647,
+      "language": "c",
+      "result": "AC",
+      "score": 1,
+      "accepted_cases": 36
+    },
+    {
+      "submission": 8185648,
+      "language": "c++",
+      "result": "AC",
+      "score": 1,
+      "accepted_cases": 36
+    }
+  ],
+  "negative_results": [
+    {
+      "submission": 8185637,
+      "result": "WA",
+      "score": 0
+    },
+    {
+      "submission": 8185638,
+      "result": "WA",
+      "score": 0
+    },
+    {
+      "submission": 8185639,
+      "result": "WA",
+      "score": 0
+    },
+    {
+      "submission": 8185640,
+      "result": "WA",
+      "score": 0
+    }
+  ]
+}

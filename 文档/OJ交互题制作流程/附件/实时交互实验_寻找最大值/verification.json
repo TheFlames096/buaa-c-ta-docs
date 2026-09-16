@@ -1,0 +1,9 @@
+{
+  "data_cases": 36,
+  "live_small_permutations": 872,
+  "independent_reply_checks": 4416,
+  "protocol_rejections": 19,
+  "sanitizer_cases": 4,
+  "maximum_queries_observed": 33,
+  "ordinary_pipeline_probe": "0\nNO_LIVE_REPLY: contestant read EOF after first flushed query; SPJ ran after contestant exited."
+}

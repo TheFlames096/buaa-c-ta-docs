@@ -1,0 +1,9 @@
+{
+  "environment": "Disposable native arm64 Linux container; mocked process_monitor CLI",
+  "transport_cases": 36,
+  "protocol_failures": 11,
+  "zero_query_valid_answer": 1,
+  "preflight_exit": "passed",
+  "temporary_fifo_cleanup": "passed",
+  "limitation": "Native BUAA monitor compatibility is verified separately by live OJ submissions."
+}

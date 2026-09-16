@@ -1,0 +1,254 @@
+[
+  {
+    "id": "01",
+    "oj_id": "casea",
+    "n": 2,
+    "maximum_index": 1,
+    "purpose": "最小规模，最大值在左"
+  },
+  {
+    "id": "02",
+    "oj_id": "caseb",
+    "n": 2,
+    "maximum_index": 2,
+    "purpose": "最小规模，最大值在右"
+  },
+  {
+    "id": "03",
+    "oj_id": "casec",
+    "n": 5,
+    "maximum_index": 2,
+    "purpose": "样例，次大值与最大值分处不同半区"
+  },
+  {
+    "id": "04",
+    "oj_id": "cased",
+    "n": 5,
+    "maximum_index": 1,
+    "purpose": "最大值与次大值同处左半区"
+  },
+  {
+    "id": "05",
+    "oj_id": "casee",
+    "n": 5,
+    "maximum_index": 5,
+    "purpose": "最大值与次大值同处右半区"
+  },
+  {
+    "id": "06",
+    "oj_id": "casef",
+    "n": 3,
+    "maximum_index": 3,
+    "purpose": "n=3 递增"
+  },
+  {
+    "id": "07",
+    "oj_id": "caseg",
+    "n": 3,
+    "maximum_index": 1,
+    "purpose": "n=3 递减"
+  },
+  {
+    "id": "08",
+    "oj_id": "caseh",
+    "n": 3,
+    "maximum_index": 2,
+    "purpose": "n=3 固定种子乱序"
+  },
+  {
+    "id": "09",
+    "oj_id": "casei",
+    "n": 7,
+    "maximum_index": 7,
+    "purpose": "n=7 递增"
+  },
+  {
+    "id": "10",
+    "oj_id": "casej",
+    "n": 7,
+    "maximum_index": 1,
+    "purpose": "n=7 递减"
+  },
+  {
+    "id": "11",
+    "oj_id": "casek",
+    "n": 7,
+    "maximum_index": 3,
+    "purpose": "n=7 固定种子乱序"
+  },
+  {
+    "id": "12",
+    "oj_id": "casel",
+    "n": 8,
+    "maximum_index": 8,
+    "purpose": "n=8 递增"
+  },
+  {
+    "id": "13",
+    "oj_id": "casem",
+    "n": 8,
+    "maximum_index": 1,
+    "purpose": "n=8 递减"
+  },
+  {
+    "id": "14",
+    "oj_id": "casen",
+    "n": 8,
+    "maximum_index": 6,
+    "purpose": "n=8 固定种子乱序"
+  },
+  {
+    "id": "15",
+    "oj_id": "caseo",
+    "n": 9,
+    "maximum_index": 9,
+    "purpose": "n=9 递增"
+  },
+  {
+    "id": "16",
+    "oj_id": "casep",
+    "n": 9,
+    "maximum_index": 1,
+    "purpose": "n=9 递减"
+  },
+  {
+    "id": "17",
+    "oj_id": "caseq",
+    "n": 9,
+    "maximum_index": 4,
+    "purpose": "n=9 固定种子乱序"
+  },
+  {
+    "id": "18",
+    "oj_id": "caser",
+    "n": 31,
+    "maximum_index": 31,
+    "purpose": "n=31 递增"
+  },
+  {
+    "id": "19",
+    "oj_id": "cases",
+    "n": 31,
+    "maximum_index": 1,
+    "purpose": "n=31 递减"
+  },
+  {
+    "id": "20",
+    "oj_id": "caset",
+    "n": 31,
+    "maximum_index": 8,
+    "purpose": "n=31 固定种子乱序"
+  },
+  {
+    "id": "21",
+    "oj_id": "caseu",
+    "n": 32,
+    "maximum_index": 32,
+    "purpose": "n=32 递增"
+  },
+  {
+    "id": "22",
+    "oj_id": "casev",
+    "n": 32,
+    "maximum_index": 1,
+    "purpose": "n=32 递减"
+  },
+  {
+    "id": "23",
+    "oj_id": "casew",
+    "n": 32,
+    "maximum_index": 11,
+    "purpose": "n=32 固定种子乱序"
+  },
+  {
+    "id": "24",
+    "oj_id": "casex",
+    "n": 33,
+    "maximum_index": 33,
+    "purpose": "n=33 递增"
+  },
+  {
+    "id": "25",
+    "oj_id": "casey",
+    "n": 33,
+    "maximum_index": 1,
+    "purpose": "n=33 递减"
+  },
+  {
+    "id": "26",
+    "oj_id": "casez",
+    "n": 33,
+    "maximum_index": 25,
+    "purpose": "n=33 固定种子乱序"
+  },
+  {
+    "id": "27",
+    "oj_id": "caseaa",
+    "n": 99999,
+    "maximum_index": 99999,
+    "purpose": "n=99999 递增"
+  },
+  {
+    "id": "28",
+    "oj_id": "caseab",
+    "n": 99999,
+    "maximum_index": 1,
+    "purpose": "n=99999 递减"
+  },
+  {
+    "id": "29",
+    "oj_id": "caseac",
+    "n": 99999,
+    "maximum_index": 58778,
+    "purpose": "n=99999 固定种子乱序"
+  },
+  {
+    "id": "30",
+    "oj_id": "casead",
+    "n": 100000,
+    "maximum_index": 100000,
+    "purpose": "n=100000 递增"
+  },
+  {
+    "id": "31",
+    "oj_id": "caseae",
+    "n": 100000,
+    "maximum_index": 1,
+    "purpose": "n=100000 递减"
+  },
+  {
+    "id": "32",
+    "oj_id": "caseaf",
+    "n": 100000,
+    "maximum_index": 40067,
+    "purpose": "n=100000 固定种子乱序"
+  },
+  {
+    "id": "33",
+    "oj_id": "caseag",
+    "n": 100000,
+    "maximum_index": 50000,
+    "purpose": "最大值与次大值在位置 50000、50001"
+  },
+  {
+    "id": "34",
+    "oj_id": "caseah",
+    "n": 100000,
+    "maximum_index": 50001,
+    "purpose": "最大值与次大值在位置 50001、50000"
+  },
+  {
+    "id": "35",
+    "oj_id": "caseai",
+    "n": 100000,
+    "maximum_index": 1,
+    "purpose": "最大值与次大值在位置 1、100000"
+  },
+  {
+    "id": "36",
+    "oj_id": "caseaj",
+    "n": 100000,
+    "maximum_index": 100000,
+    "purpose": "最大值与次大值在位置 100000、1"
+  }
+]
